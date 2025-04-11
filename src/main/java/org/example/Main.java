@@ -3,13 +3,13 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.*;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Main {
     public static WebDriver driver;
     public static void main(String[] args) throws InterruptedException, IOException {
-        //testSwiggy();
         //brokenUrlValidation();
         //openNewWindow();
         //brokenImageValidation();
@@ -26,22 +25,6 @@ public class Main {
         fluentWaitExample();
     }
 
-    public static void testSwiggy() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\akash\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        driver = (WebDriver) new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://www.swiggy.com/restaurants");
-        Actions action = new Actions(driver);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//img[@class=\"sc-bXCLTC jRHowI\"]")).click();
-        driver.findElement(By.xpath("//*[@id=\"root\"]/div[1]/div/div/div/div[2]/div[2]/div/h1")).sendKeys(Keys.PAGE_DOWN);
-        driver.findElement(By.xpath("//div[@class=\"sc-toTrN gbuNhD\"]/child::div[2]/div/div/div/div[1]/div/button[2]")).click();
-        //river.findElement(By.xpath("//a[@class=\"_3nTR3\"]")).click();
-        driver.findElement(By.xpath("//div[@class=\"sc-bLqSdX kJctoR\"]/div[2]/div")).click();
-        Thread.sleep(2000);
-        driver.quit();
-    }
     public static void brokenUrlValidation() throws IOException {
         System.setProperty("webdriver.chrome.driver","C:\\Users\\akash\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
         driver = (WebDriver) new ChromeDriver();
@@ -131,7 +114,7 @@ public class Main {
         driver = (WebDriver) new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://github.com/Akash-66");
-        WebDriverWait webDriverWait = new WebDriverWait(driver,30);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
         String title = driver.getTitle();
         webDriverWait.until(ExpectedConditions.titleIs(title));
         driver.findElement(By.xpath("//following::div[@class=\"Box pinned-item-list-item d-flex p-3 width-full public source\"][2]/child::div/child::div/child::span/a")).click();
@@ -146,8 +129,8 @@ public class Main {
         driver.manage().window().maximize();
         driver.get("https://github.com/Akash-66");
         FluentWait fluentWait = new FluentWait(driver);
-        fluentWait.withTimeout(5000,TimeUnit.SECONDS);
-        fluentWait.pollingEvery(250, TimeUnit.SECONDS);
+        fluentWait.withTimeout(Duration.ofSeconds(3000));
+        fluentWait.pollingEvery(Duration.ofSeconds(20));
         fluentWait.ignoring(NoSuchElementException.class);
         String title = driver.getTitle();
         driver.quit();
