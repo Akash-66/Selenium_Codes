@@ -8,8 +8,8 @@ import java.util.*;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
+import org.example.DriverClass.Drivers;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -57,9 +57,7 @@ public class Main {
 
     public static void openNewWindow()
     {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\akash\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        driver = (WebDriver) new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = Drivers.openChromeDriver();
         String originalTab = driver.getWindowHandle();
         System.out.println(originalTab);
         driver.get("https://www.swiggy.com/restaurants");
@@ -78,9 +76,7 @@ public class Main {
     }
 
     static void brokenImageValidation() throws IOException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\akash\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        driver = (WebDriver) new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = Drivers.openChromeDriver();
         driver.get("https://www.swiggy.com/restaurants");
         List<WebElement> webElementList = driver.findElements(By.tagName("img"));
         for(WebElement element:webElementList)
@@ -105,18 +101,14 @@ public class Main {
     }
     static void implicitWaitExample()
     {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\akash\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        driver = (WebDriver) new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = Drivers.openChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://www.swiggy.com/restaurants");
         driver.quit();
     }
 
     static void explicitWaitExample() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\akash\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        driver = (WebDriver) new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = Drivers.openChromeDriver();
         driver.get("https://github.com/Akash-66");
         WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
         String title = driver.getTitle();
@@ -128,9 +120,7 @@ public class Main {
 
     static void fluentWaitExample()
     {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\akash\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        driver = (WebDriver) new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = Drivers.openChromeDriver();
         driver.get("https://github.com/Akash-66");
         FluentWait fluentWait = new FluentWait(driver);
         fluentWait.withTimeout(Duration.ofSeconds(3000));
