@@ -17,18 +17,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Main {
     public static WebDriver driver;
     public static void main(String[] args) throws InterruptedException, IOException {
-        //brokenUrlValidation();
+        brokenUrlValidation();
         //openNewWindow();
         //brokenImageValidation();
         //implicitWaitExample();
         //explicitWaitExample();
-        fluentWaitExample();
+        //fluentWaitExample();
     }
 
     public static void brokenUrlValidation() throws IOException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\akash\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        driver = (WebDriver) new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = Drivers.openChromeDriver();
         driver.get("https://www.swiggy.com/restaurants");
         List<WebElement> webElementList = driver.findElements(By.tagName("a"));
 
