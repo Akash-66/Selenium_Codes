@@ -27,23 +27,29 @@ public class Main {
 
     public static void brokenUrlValidation() throws IOException {
         driver = Drivers.openChromeDriver();
-        driver.get("https://www.swiggy.com/restaurants");
+        driver.get("https://github.com/Akash-66");
         List<WebElement> webElementList = driver.findElements(By.tagName("a"));
-
         for(WebElement element : webElementList) {
-            String urlData = element.getAttribute("href");
-            //System.out.println(urlData);
             try {
-                URL url = new URL(urlData);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setConnectTimeout(3000);
-                httpURLConnection.connect();
-                if (httpURLConnection.getResponseCode() >= 200)
-                    System.out.println("URL is working: " + urlData);
-                else
-                    System.out.println("URL is broken: " + urlData);
-            } catch (Exception e) {
-                //System.out.println(e);
+                String urlData = element.getAttribute("href");
+                try
+                {
+                    URL url = new URL(urlData);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setConnectTimeout(3000);
+                    httpURLConnection.connect();
+                    if (httpURLConnection.getResponseCode() >= 200)
+                        System.out.println("URL is working: " + urlData);
+                    else
+                        System.out.println("URL is broken: " + urlData);
+                }
+                catch (Exception e)
+                {
+                    System.out.println("Null URL detected, Retrying...");
+                }
+
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Stale element detected. Retrying...");
             }
         }
         driver.quit();
