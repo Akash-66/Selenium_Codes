@@ -1,7 +1,7 @@
 package org.example.TestScripts;
 
 import org.example.DriverClass.Drivers;
-import org.example.pageObjectModel.GitHubOperations;
+import org.example.PageObjectModelClasses.GitHubOperations;
 import org.openqa.selenium.WebDriver;
 
 public class GitHub {
