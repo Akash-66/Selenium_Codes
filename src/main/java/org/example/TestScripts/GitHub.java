@@ -1,4 +1,4 @@
-package org.example;
+package org.example.TestScripts;
 
 import org.example.DriverClass.Drivers;
 import org.example.pageObjectModel.GitHubOperations;

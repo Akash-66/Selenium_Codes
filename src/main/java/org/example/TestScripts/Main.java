@@ -1,4 +1,4 @@
-package org.example;
+package org.example.TestScripts;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
